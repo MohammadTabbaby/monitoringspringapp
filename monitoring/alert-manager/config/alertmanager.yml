@@ -1,0 +1,31 @@
+global:
+  resolve_timeout: 1m
+  slack_api_url: 'https://hooks.slack.com/services/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'
+
+route:
+  receiver: lab-alert-manager
+  group_by: ['alertname']  # Adjust as necessary
+  group_interval: 10s       # Set this to a shorter time
+  repeat_interval: 10s      # Set this to a shorter time
+
+receivers:
+  - name: 'lab-alert-manager'
+    telegram_configs:
+      - bot_token: '7597496613:AAENP0uO5vJCclif7MFeVX1FV1qNAd6JSvQ'
+        api_url: 'https://api.telegram.org'
+        chat_id: 7117141716  # Ensure this is a string
+        parse_mode: ''
+        send_resolved: true
+
+    email_configs:
+      - to: 'ventedtitan@gmail.com'
+        from: 'ventedtitan@gmail.com'
+        smarthost: 'smtp.gmail.com:587'
+        auth_username: 'ventedtitan@gmail.com'
+        auth_identity: 'ventedtitan@gmail.com'
+        auth_password: 'VentedTitan@8001'
+        send_resolved: true
+
+    slack_configs:
+      - channel: '#monitoring_2024'
+        send_resolved: true
